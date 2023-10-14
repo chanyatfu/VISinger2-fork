@@ -593,7 +593,7 @@ class Generator_Noise(torch.nn.Module):
 
         real = amp * torch.cos(phase)
         imag = amp * torch.sin(phase)
-        spec = torch.cat([real, imag], 3)
+        spec = torch.complex(real, imag).squeeze(-1)
         istft_x = torch.istft(spec, self.fft_size, self.hop_size, self.win_size, self.window.to(amp), True, length=x.shape[2] * self.hop_size, return_complex=False)
     
         return istft_x.unsqueeze(1)

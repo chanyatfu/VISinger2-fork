@@ -11,7 +11,8 @@ This repository is the official PyTorch implementation of [VISinger2](https://ar
 1. Install python requirements: pip install -r requirements.txt
 2. Download the [Opencpop Dataset](https://wenet.org.cn/opencpop/).
 3. prepare data like data/opencpop (wavs, trainset.txt, testset.txt, train.list, test.list)
-4. modify the egs/visinger2/config.json (data/data_dir, train/save_dir)
+4. To generate train.list, use `awk -F'|' '{print $1}' train.txt > train.list`
+5. modify the egs/visinger2/config.json (data/data_dir, train/save_dir)
 
 ## extract pitch and mel
 ```
@@ -40,4 +41,3 @@ The pre-trained model trained using opencpop is [here](https://drive.google.com/
 ## Acknowledgements
 We referred to [VITS](https://github.com/jaywalnut310/vits), [HiFiGAN](https://github.com/jik876/hifi-gan), [gst-tacotron](https://github.com/syang1993/gst-tacotron)
 and [ddsp_pytorch](https://github.com/acids-ircam/ddsp_pytorch) to implement this. Thanks to [swagger-coder](https://github.com/swagger-coder) for help building visinger2_flow.
-

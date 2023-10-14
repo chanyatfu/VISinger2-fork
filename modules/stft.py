@@ -379,9 +379,9 @@ class TorchSTFT(torch.nn.Module):
         
     def transform(self, x):
         x_stft = torch.stft(x, self.fft_size, self.hop_size, self.win_size,
-                            self.window.type_as(x), normalized=self.normalized)
-        real = x_stft[..., 0]
-        imag = x_stft[..., 1]
+                            self.window.type_as(x), normalized=self.normalized, return_complex=True)
+        real = x_stft.real
+        imag = x_stft.imag
         mag = torch.clamp(real ** 2 + imag ** 2, min=1e-7)
         mag = torch.sqrt(mag)
         phase = torch.atan2(imag, real)
@@ -509,4 +509,3 @@ class STFT(torch.nn.Module):
         self.magnitude, self.phase = self.transform(input_data)
         reconstruction = self.inverse(self.magnitude, self.phase)
         return reconstruction
-
