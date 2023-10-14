@@ -1,6 +1,8 @@
 # VISinger2
 
-This repository is the official PyTorch implementation of [VISinger2](https://arxiv.org/abs/2211.02903).
+**Fixed PyTorch 2.0.1 compatibility issues, now VISinger 2 can be run in cuda12.**
+
+This repository is a clone of the offical PyTorch implementation of [VISinger2](https://arxiv.org/abs/2211.02903).
 
 ### Updates
 - Apr 10 2023: Add egs/visinger2_flow: add flow to VISinger2 to get a more flexible prior distribution.
@@ -10,8 +12,9 @@ This repository is the official PyTorch implementation of [VISinger2](https://ar
 ## Pre-requisites
 1. Install python requirements: pip install -r requirements.txt
 2. Download the [Opencpop Dataset](https://wenet.org.cn/opencpop/).
-3. prepare data like data/opencpop (wavs, trainset.txt, testset.txt, train.list, test.list)
+3. prepare data like data/opencpop (wavs, train.txt, test.txt, train.list, test.list)
 4. To generate train.list, use `awk -F'|' '{print $1}' train.txt > train.list`
+4. To generate test.list, use `awk -F'|' '{print $1}' test.txt > test.list`
 5. modify the egs/visinger2/config.json (data/data_dir, train/save_dir)
 
 ## extract pitch and mel
