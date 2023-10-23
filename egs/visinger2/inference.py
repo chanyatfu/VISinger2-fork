@@ -92,7 +92,7 @@ def inference_label2wav(net_g, label_list_path, output_dir, hps, cuda_id=None):
                 pitchid = pitchid.cuda(0)
                 dur = dur.cuda(0)
                 slur = slur.cuda(0)
-
+            
             # infer
             o, _, _ = net_g.infer(pho, pho_lengths, pitchid, dur, slur)
             audio = o[0,0].data.cpu().float().numpy()
@@ -118,6 +118,5 @@ if __name__ == "__main__":
     if(not os.path.exists(output_dir)):
         os.makedirs(output_dir)
     print("load model end!")
-
+    
     inference_label2wav(model, input_dir, output_dir, hps, cuda_id=0)
-

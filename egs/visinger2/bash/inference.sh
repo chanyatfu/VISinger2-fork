@@ -6,7 +6,6 @@ export PYTHONPATH=$base_dir
 export PYTHONIOENCODING=UTF-8
 
 CUDA_VISIBLE_DEVICES=0 python inference.py \
-    -model_dir /root/logdir/visinger2 \
-    -input_dir data/opencpop/testset.txt \
-    -output_dir /root/logdir/visinger2/syn_result \
-
+    -model_dir ../../models/opencpop \
+    -input_dir ../../data/opencpop/test.txt \
+    -output_dir ./syn_result \
