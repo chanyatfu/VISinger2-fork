@@ -87,7 +87,7 @@ def plot_spectrogram_to_numpy(spectrogram):
     mpl_logger.setLevel(logging.WARNING)
   import matplotlib.pylab as plt
   import numpy as np
-  
+
   fig, ax = plt.subplots(figsize=(10,2))
   im = ax.imshow(spectrogram, aspect="auto", origin="lower",
                   interpolation='none')
@@ -214,7 +214,7 @@ def get_logger(model_dir, filename="train.log"):
   global logger
   logger = logging.getLogger(os.path.basename(model_dir))
   logger.setLevel(logging.DEBUG)
-  
+
   formatter = logging.Formatter("%(asctime)s\t%(name)s\t%(levelname)s\t%(message)s")
   if not os.path.exists(model_dir):
     os.makedirs(model_dir)
@@ -236,7 +236,7 @@ class HParams():
       if type(v) == dict:
         v = HParams(**v)
       self[k] = v
-    
+
   def keys(self):
     return self.__dict__.keys()
 

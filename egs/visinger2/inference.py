@@ -33,6 +33,7 @@ def parse_file(label_list_path):
     return label
 
 
+
 def parse_label(hps, pho, pitchid, dur, gtdur, slur):
     phos = []
     pitchs = []
@@ -79,8 +80,8 @@ def load_model(model_dir):
     return net_g, hps
 
 
-def inference_once(net_g, label, hps, cuda_id=None):
-    pho, pitchid, dur, slur = label
+def inference_once(net_g, label, cuda_id=None):
+    pho, pitchid, dur, slur, _ = label
     device = torch.device(f"cuda:{cuda_id}" if cuda_id != None else "cpu")
     with torch.no_grad():
         # data
@@ -110,7 +111,7 @@ def inference_all(net_g, label_list_path, output_dir, hps, cuda_id=None, output_
     label = parse_file(label_list_path)
     ret = {}
     for file_name, label in tqdm(label.items()):
-        audio = inference_once(net_g, label, hps, cuda_id)
+        audio = inference_once(net_g, label, cuda_id)
         ret[file_name] = audio
         if output_wav:
             write(os.path.join(output_dir, file_name.split('.')[0] + '.wav' ), hps.data.sample_rate, audio)
